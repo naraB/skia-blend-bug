@@ -1,11 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import {
+  Blend,
+  Canvas,
+  RadialGradient,
+  Rect,
+  vec,
+} from "@shopify/react-native-skia";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Canvas style={{ height: "100%", width: "100%" }}>
+        <Rect x={0} y={0} width={256} height={256}>
+          <Blend mode="colorDodge">
+            <RadialGradient
+              r={128}
+              c={vec(128, 128)}
+              colors={["blue", "yellow"]}
+            />
+            <RadialGradient
+              r={128}
+              c={vec(128, 128)}
+              colors={["red", "green"]}
+            />
+            <RadialGradient
+              r={128}
+              c={vec(128, 128)}
+              colors={["black", "black"]}
+            />
+          </Blend>
+        </Rect>
+      </Canvas>
     </View>
   );
 }
@@ -13,8 +39,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
